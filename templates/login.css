@@ -1,0 +1,94 @@
+.login-frame {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 30%; /* Adjust the width as needed */
+    height: 500px; /*Adjust the height as needed */
+    border: 0px; /* Border color */
+    background-color: #a6c0cd; /* Background color */
+    /* overflow: hidden; Hide overflow content */
+    z-index: 1;
+    border-radius: 25px;
+}
+
+.login-title {
+    position: relative;
+    font-size: 25px;
+    font-family:'Times New Roman', Times, serif;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.login-button {
+    position: relative;
+    border-radius: 25px;
+    height: 40px;
+    width: 100px;
+    color: rgb(58, 57, 57);
+    background-color: #a6c0cd;
+    left: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=text] {
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.username-text-in {
+    top: 5%;
+    border-radius: 25px;
+}
+
+.username-title {
+    position: relative;
+    font-size: 25px;
+    text-align: left;
+    font-family:'Times New Roman', Times, serif;
+    color: black;
+    top: 10%;
+    left: 6%;
+    padding-bottom: 7%;
+}
+
+.password-text-in {
+    top: 5%;
+    border-radius: 25px;
+}
+
+.password-title {
+    position: relative;
+    font-size: 25px;
+    text-align: left;
+    font-family:'Times New Roman', Times, serif;
+    color: black;
+    top: 10%;
+    left: 6%;
+    padding-bottom: 7%;
+}
+
+.image-frame {
+    position: relative;
+    top: 8%;
+}

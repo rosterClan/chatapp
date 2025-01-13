@@ -1,0 +1,50 @@
+
+/* Box A Frame*/
+.box-a-frame {
+    width: 250px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border: 1px solid #ccc; /* Border color */
+    background-color: #a6c0cd; /* Background color */
+    position: relative; /* Positioning for absolute children */
+    overflow: hidden; /* Hide overflow content */
+    z-index: 1;
+}
+
+.box-a-highlight {
+    position: absolute;
+    width: 235px;
+    top: 10%;
+    left: 3%;
+    bottom: 10%;
+    background-color: #718e9c;
+    z-index: 2;
+}
+
+/* User status */
+.left-text {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust left padding */
+    transform: translateY(-50%);
+    color: #ffffff; /* Text color */
+    z-index: 3;
+}
+
+/* Online or offline */
+.right-text {
+    position: absolute;
+    top: 50%;
+    right: 55px; /* Adjust right padding */
+    transform: translateY(-50%);
+    color: #ffffff; /* Text color */
+}
+
+/* Vertical partition */
+.vertical-partition {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%; /* Position in the middle */
+    width: 2px; /* Adjust the width of the partition */
+    background-color: #ccc; /* Color of the partition */
+}

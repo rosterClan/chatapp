@@ -1,0 +1,64 @@
+{% extends 'base.jinja' %}
+
+{% block content %} 
+
+    <style>
+        {% include 'login.css' %}
+    </style> 
+
+        <center>
+            <div class = "login-title">
+                |___LOGIN___|
+            </div>
+            <div class = "login-frame">
+                <div class = "username-title">
+                    Username:
+                </div>
+                <input type="text" class="username-text-in" id="username" placeholder="Enter your username">
+                <div class = "password-title">
+                    Password:
+                </div>
+                <input type="password" class="password-text-in" id="password" placeholder="Enter your password">
+                <div class="image-frame">
+                    <img src="{{ url_for('static', filename='images/welcome_back.gif') }}" alt="welcome back!" width="250">
+                </div>
+            </div>
+            <br></br>
+            <button class="login-button" onclick="login()">LOGIN</button>
+        </center>
+    <script>
+        function isValidURL(string) {
+            if (string.length == 0) {
+                return false;
+            }
+            if (string[0] == "/") {
+                return true;
+            }
+            return false;
+        }
+
+        async function login() {
+            sessionStorage.setItem("key", "");
+            let loginURL = "{{ url_for('login_user') }}";
+
+            let user_hash = await sha256($("#username").val()+$("#password").val());
+            let secret_key = await sha256($("#password").val());
+            
+            sessionStorage.setItem("key", secret_key);
+            sessionStorage.setItem("user_hash", user_hash);
+            sessionStorage.setItem("username", $("#username").val());
+
+            let res = await axios.post(loginURL, {
+                username: $("#username").val(),
+                user_hash: user_hash
+            });
+
+            if (res.data['error'] == null) {
+                sessionStorage.setItem('token',res.data['access_token']);
+                window.open(res.data['redirect'], "_self");
+            } else {
+                alert(res.data['error']);
+            }
+        }
+    </script>
+{% endblock %}

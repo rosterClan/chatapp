@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Apply CSS to remove border and extra spacing around iframes */
+        iframe {
+            border: none;
+            padding: 0;
+            margin: 0;
+            display: block; /* Ensures iframes are treated as block elements */
+        }
+
+        /* Positioning for the header iframe */
+        #header_iframe {
+            position: relative;
+            z-index: 1; /* Ensure header is above other elements */
+        }
+
+        /* Positioning for the toggle iframe */
+        #toggle_iframe {
+            position: absolute;
+            top: 15px; /* Adjust top position as needed */
+            left: 0;
+            width: 100%;
+            height: 50px; /* Adjust height as needed */
+            z-index: 2; /* Ensure toggle is above header */
+        }
+
+        #a_col_iframe {
+            position: absolute;
+            top: 100px; /* Adjust top position as needed */
+            left: 0;
+            width: 100%;
+            height: 100%; /* Adjust height as needed */
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the header iframe -->
+    <iframe id="header_iframe" src="../a_header/a_header.html" width="100%" height="400"></iframe>
+
+    <!-- Include the toggle iframe -->
+    <iframe id="toggle_iframe" src="../a_toggle/a_toggle.html"></iframe>
+
+    <div style="display: flex;">
+        <div><iframe id="a_col_iframe" src="../a_col/a_col.html"></iframe></div>
+    </div>
+</body>
+</html>

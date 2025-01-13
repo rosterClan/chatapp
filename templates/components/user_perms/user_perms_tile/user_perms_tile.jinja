@@ -1,0 +1,31 @@
+{% block content %} 
+    <style>
+        {% include './components/user_perms/user_perms_tile/user_perms_tile.css' %}
+    </style> 
+
+    <div class="use_perms_row_wpr">
+        <div class="user_perms_row">
+            <p id="user_name">Username</p>
+        </div>
+
+        <div class="user_perms_row">
+            <div class="user_perms_row_content">
+                <select onchange="UPDATE_user_roll(this)" name="roles" id="roles">
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                    <option value="administration">Administration</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="user_perms_row">
+            <div class="user_perms_row_content">
+                <select onchange="UPDATE_mute_status(this)" name="mute_status" id="mute_status">
+                    <option value="mute">Mute</option>
+                    <option value="unmute">UnMute</option>
+                </select>
+            </div>
+        </div>
+    </div>
+{% endblock %}

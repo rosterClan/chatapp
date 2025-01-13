@@ -1,0 +1,23 @@
+
+.use_perms_row_wpr {
+    flex: 1;
+    height: 45px;
+    background-color: white;
+    border-bottom: 1px solid #DDDDDD;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_perms_row {
+    flex:1;
+    text-align: center;
+
+}
+
+.user_perms_row_content {
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}

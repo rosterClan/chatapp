@@ -1,0 +1,121 @@
+{% block content %} 
+
+    <script>
+        function close_add_friends(event,element) {
+            if (event.target != element) {
+                event.stopPropagation();
+                return;
+            }
+            element.style.display = "None";
+        }
+
+        function CLEAR_user_permission_roles() {
+            while (document.getElementsByClassName('use_perms_row_wpr').length > 0) {
+                document.getElementsByClassName('use_perms_row_wpr')[0].remove();
+            }
+        }
+
+        function LOAD_user_permission_roles(users) {
+            CLEAR_user_permission_roles();
+            
+            var parent_element = document.getElementById('user_perms_results_wpr');
+            for (var index = 0; index < users.length; index++) {
+                var element = document.createElement('div');
+                element.innerHTML = `{% include './components/user_perms/user_perms_tile/user_perms_tile.jinja' %}`;
+
+                element.querySelector('#user_name').innerText = users[index][0];
+                element.querySelector('#roles').value = role_int_to_text(users[index][1]);
+                element.querySelector('#mute_status').value = mute_int_to_text(users[index][2]);
+
+                parent_element.appendChild(element);
+            }
+        }
+
+        function open_user_perms() {
+            const overlay = document.getElementById("user_perms_overlay");
+            overlay.style.display = "flex"; 
+            socket.emit("relay_all_users",JSON.stringify({"sender":user_name})); 
+        }
+
+        socket.on("update_users_list", async (msg, color="black") => {
+            LOAD_user_permission_roles(JSON.parse(msg)['users_list']);
+        });
+
+        function search_for_users_perms() {
+            var content = document.getElementById("filter_text_element_user_perms").value;
+            socket.emit("relay_searched_users",JSON.stringify({"sender":user_name, 'search_term':content})); 
+        }
+
+        function role_int_to_text(numeric_tag) {
+            if (numeric_tag == 1) {
+                return 'student';
+            } else if (numeric_tag == 2) {
+                return 'staff';
+            } else if (numeric_tag == 3) {
+                return 'administration';
+            } else if (numeric_tag == 4) {
+                return 'admin';
+            }
+        }
+        function mute_int_to_text(numeric_mute_status) {
+            if (numeric_mute_status == 0) {
+                return 'unmute';
+            } else {
+                return 'mute';
+            } 
+        }
+
+        function role_text_to_int(text_tag) {
+            if (text_tag == 'student') {
+                return 1;
+            } else if (text_tag == 'staff') {
+                return 2;
+            } else if (text_tag == 'administration') {
+                return 3;
+            } else if (text_tag == 'admin') {
+                return 4;
+            }
+        }
+        function mute_text_to_int(text_mute_status) {
+            if (text_mute_status == 'unmute') {
+                return 0;
+            } else {
+                return 1;
+            } 
+        }
+
+        function UPDATE_user_roll(element) {
+            var user_to_change = element.parentElement.parentElement.parentElement.querySelector('#user_name').innerText;
+            var new_role = element.value;
+            socket.emit("update_user_roll",JSON.stringify({"sender":user_name, 'user_to_change': user_to_change, 'new_role':role_text_to_int(new_role)})); 
+        }
+        function UPDATE_mute_status(element) {
+            var user_to_change = element.parentElement.parentElement.parentElement.querySelector('#user_name').innerText;
+            var mute_status = element.value;
+            socket.emit("update_mute_status",JSON.stringify({"sender":user_name, 'user_to_change': user_to_change, 'mute_status':mute_text_to_int(mute_status)})); 
+        }
+    </script>
+
+
+
+    <style>
+        {% include './components/user_perms/user_perms_overlay.css' %}
+    </style> 
+
+    <div onclick="close_add_friends(event, this)" id="user_perms_overlay" class="user_perms_overlay">
+
+        <div class="user_perms_window">
+            <div class="user_perms_search_wpr">
+                <div class="user_perms_search">
+                    <input type="text" id="filter_text_element_user_perms" onkeyup="search_for_users_perms()">
+                </div>
+            </div>
+            <div class="user_perms_results">
+                <div id="user_perms_results_wpr" class="user_perms_results_wpr">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

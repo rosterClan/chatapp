@@ -1,0 +1,46 @@
+.row {
+  display: flex;
+}
+
+.column_wrapper {
+  overflow: hidden; /* Clear floats */
+  background-color: white; /* Set background color */
+}
+
+.first_column {
+    float: left;
+    width: 15%;
+    margin-left: 10px;
+    background-color: #a6c0cd;
+  }
+
+.second_column {
+  float: left;
+  width: 20%;
+  color: white;
+  background-color: black;
+}
+
+.third_column {
+  float: left;
+  width: 64%;
+  background-color: #a6c0cd;
+}
+
+/* Set flex container to fill remaining height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.row {
+  min-height: 100%; /* Ensure the row fills the height */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+

@@ -1,0 +1,31 @@
+{% block content %} 
+    <style>
+        {% include '/components/articles_sidebar/new_article_btn/new_article_btn.css' %}
+    </style> 
+
+    <script>
+        function create_new_article(element) {
+
+            const overlay = document.getElementById("create_article_overlay");
+            overlay.style.display = "flex"; 
+
+            if (element != null) {
+                var existing_title = document.getElementById('article_title_p').innerText;
+                var existing_content = document.getElementById('article_page_content').innerText;
+                var article_id = document.getElementById('main_article_window').getAttribute("article_id");
+
+                document.getElementById('article_title_input').value = existing_title;
+                document.getElementById('article_content_input').value = existing_content;
+                overlay.setAttribute('article_id',article_id)
+            } else {
+                overlay.setAttribute('article_id',null)
+            }
+        }
+    </script>
+
+    <div onclick="create_new_article(null)" class="new_article_container">
+        <div class="main_new_article_btn">
+            <p>NEW ARTICLE</p>
+        </div>
+    </div>
+{% endblock %}

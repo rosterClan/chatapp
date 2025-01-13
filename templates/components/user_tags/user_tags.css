@@ -1,0 +1,28 @@
+.tag_wpr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user_tag_name {
+    padding-right: 10px;
+}
+
+.user_tag_wpr {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    padding: 2px;
+    border: 1px solid red;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.tag {
+    color: black;
+    font-size: 12px;
+}
+
+.user_tag_name {
+    color: black;
+}

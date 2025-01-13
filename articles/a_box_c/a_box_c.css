@@ -1,0 +1,95 @@
+
+/* Box A Frame*/
+.box-c-frame {
+    width: 700px; /* Adjust the width as needed */
+    height: 700px; /* Adjust the height as needed */
+    border: 0px; /* Border color */
+    background-color: #c1ccd2; /* Background color */
+    position: relative; /* Positioning for absolute children */
+    overflow: hidden; /* Hide overflow content */
+    z-index: 1;
+}
+
+.box-c-header {
+    position: absolute;
+    width: 700px;
+    height: 50px;
+    background-color: rgb(58, 57, 57);
+    z-index: 2;
+}
+
+.cancel-button {
+    position: absolute;
+    border: none;
+    height: 40px;
+    color: rgb(58, 57, 57);
+    background-color: #a6c0cd;
+    left: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* User status */
+.header-text {
+    position: absolute;
+    font-weight: bold;
+    top: 25%;
+    left: 40%;
+    text-align: center;
+    color: #ffffff; /* Text color */
+    z-index: 3;
+}
+
+.title-frame {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    top: 15%;
+    /*background-color: rgb(58, 57, 57);*/
+    z-index: 5;
+}
+
+
+.content-frame {
+    position: relative;
+    width: 700px;
+    height: 550px;
+    top: 15%;
+    /*background-color: #a69898;*/
+    z-index: 5;
+}
+
+.label-text {
+    font-weight: bold;
+    position: relative;
+    top: 15px;
+    padding-bottom: 3%;
+    left: 5%;
+    color: #000000; /* Text color */
+    z-index: 3;
+}
+
+input[type=text] {
+    position: relative;
+    width: 550px; /* Adjust the width as needed */
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.title-box {
+    height: 45px;
+    top: -15%;
+    left: 70px;
+}
+
+.content-box {
+    height: 500px;
+    top: 5px;
+    left: 45px;
+}
+

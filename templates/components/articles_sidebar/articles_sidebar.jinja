@@ -1,0 +1,43 @@
+
+
+{% block content %} 
+
+    <style>
+        {% include './components/sidebar/sidebar.css' %}
+    </style> 
+
+    <script>
+        function CLEAR_article_tiles() {
+                while (document.getElementsByClassName("article_content_cell").length > 0) {
+                    document.getElementsByClassName("article_content_cell")[0].remove();
+            }
+        }
+
+        function LOAD_article_list(articles_array) {
+            CLEAR_article_tiles();
+            var article_container = document.getElementById("artile_list_wpr");
+            for (var i = 0; i < articles_array.length; i++) {
+                var element = document.createElement('div');
+                
+                element.innerHTML = `{% include './components/articles_sidebar/article_cell/article_cell.jinja' %}`;
+                element.querySelector('#article_name_cell').innerText = articles_array[i]['title'];
+                element.querySelector('#article_des_cell').innerText = 'Written by ' + String(articles_array[i]['author']);
+                
+                element.querySelector("#content-cell").setAttribute("article_id", articles_array[i]['article_id']);
+                article_container.appendChild(element);
+            }
+        }
+
+        socket.on("recieve_articles", (msg, color="black") => {
+            articles_array = JSON.parse(msg)['articles'];
+            LOAD_article_list(articles_array);
+        });
+    </script>
+
+    <div id="content-vertical-container" class="content-vertical-container">
+        {% include './components/articles_sidebar/new_article_btn/new_article_btn.jinja' %}
+        <div id="artile_list_wpr" class="overflowY-chatwpr">
+        </div>
+    </div>
+
+{% endblock %}

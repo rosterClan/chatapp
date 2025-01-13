@@ -1,0 +1,14 @@
+.btn-add-friend-container {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-add-friend-container :hover {
+    width: 22px;
+    height: 22px;
+}
+
+.btn-add-friend-container :active {
+    width: 18px;
+    height: 18px;
+}

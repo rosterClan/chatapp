@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="a_toggle.css">
+    </head>
+    <body>
+    <script>
+        let state = false;
+        function switch_state(element) {
+            let highlight = document.getElementById("main_slide_btn");
+            let width = (document.getElementById("toggle-page-wpr").getBoundingClientRect()['width']/2)+5;
+            
+            if (state) {
+                highlight.style.transform = "translate(0px, -102%)";
+                highlight.style.borderRadius = "10px 0px 0px 10px";
+                state = false;
+            } else {
+                highlight.style.transform = "translate("+width+"px,-102%)";
+                highlight.style.borderRadius = "0px 10px 10px 0px";
+                state = true;
+            }
+        }
+    </script>
+            
+    <div id="toggle-page-wpr" class="toggle-wpr">
+        <div onclick="switch_state(this)" class="toggle">
+            <div class="switch_division">
+                <p>Chatroom</p>
+            </div>
+            <div class="switch_division">
+                <p>Articles</p>
+            </div>
+        </div>
+        <div onclick="switch_state(this)" id="main_slide_btn" class="btn"></div>
+    </div> 
+    </body>
+</html>

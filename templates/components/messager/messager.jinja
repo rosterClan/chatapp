@@ -1,0 +1,85 @@
+{% block content %} 
+    <style>
+        {% include './components/messager/messager.css' %}
+    </style> 
+
+    <script>
+        let ACTIVE_CHAT_ID = null;
+
+        function CLEAR_message_history() {
+            while (document.getElementsByClassName("message-history").length > 0) {
+                document.getElementsByClassName("message-history")[0].remove();
+            }
+        }
+
+        function LOAD_message_history(messages) {
+            CLEAR_message_history();
+
+            var message_history_parent = document.getElementById('message_history_wpr');
+            for (var i = 0; i < messages.length; i++) {
+                var element = document.createElement("div");
+                element.innerHTML = `{% include './components/messager/message-history/message-history.jinja' %}`;
+
+                element.querySelector('#message-history-content').innerText = messages[i]['message'];
+                element.querySelector('#message_history_user_tag').innerHTML = create_user_tag(messages[i]['from'][0],messages[i]['from'][1]).innerHTML;
+
+                element.setAttribute("chat_room_id",  messages[i]['from']);
+                message_history_parent.appendChild(element);
+            }
+        }
+
+        function OPEN_chat(element) {
+            var chat_id = element.getAttribute("chat_room_id");
+            document.getElementById('messenger_content').style.display = 'flex';
+            socket.emit('open_chat',JSON.stringify({sender: user_name, recipient:"", chat_room_id:chat_id})); 
+        }
+
+        function ACTIVATE_selected_chat_room(article_id) {
+            var rows = document.getElementsByClassName('content-cell');
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].className = 'content-cell';
+            }
+
+            var selected_element = document.querySelectorAll('div[chat_room_id="'+String(article_id)+'"]')[0];
+            selected_element.className += " selected_content_cell";
+        }
+
+        socket.on("open_chat_room", (msg, color="black") => {
+            if (msg != 'null') {
+                document.getElementById('messenger_content').style.display = 'flex';
+                chat_room_obj = JSON.parse(msg);
+
+                ACTIVE_CHAT_ID = chat_room_obj['chat_id'];
+                LOAD_chat_title(chat_room_obj['chat_name']);
+                LOAD_message_members(chat_room_obj['members']);
+                LOAD_message_history(chat_room_obj['messages']);
+
+                ACTIVATE_selected_chat_room(ACTIVE_CHAT_ID);
+            } else {
+                document.getElementById('messenger_content').style.display = 'none';
+            }
+        });
+    </script>
+
+    <div style="display: none;" id="messenger_content" class="messenger_content">
+        <div class="messenger_header blow-out">
+            <div class="title-delete-divide">
+                <div style="flex:9;">
+                    {% include './components/messager/chat-title/chat-title.jinja' %}
+                </div>
+
+                <div id="delete_btn">
+                    {% include '/components/messager/delete_chat_btn/delete_chat_btn.jinja' %}
+                </div>
+            </div>
+
+            {% include './components/messager/messanger-members/messanger-members.jinja' %}
+        </div>
+        <div id="message_history_wpr" class="message_history_wpr blow-out">
+           
+        </div>
+        <div class="user_controls blow-out">
+            {% include './components/messager/message_input/message_input.jinja' %}
+        </div>
+    </div>
+{% endblock %}

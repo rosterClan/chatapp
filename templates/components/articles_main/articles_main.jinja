@@ -1,0 +1,96 @@
+c{% block content %} 
+    <style>
+        {% include './components/articles_main/articles_main.css' %}
+    </style> 
+
+    <script>
+        function OPEN_article(element) {
+            var article_id = element.getAttribute("article_id");
+            document.getElementById("main_article_window").setAttribute('article_id',article_id);
+            socket.emit('get_article_by_id',JSON.stringify({sender: user_name,'article_id':article_id})); 
+        }
+
+        function ACTIVATE_selected_article(article_id) {
+            var rows = document.getElementsByClassName("article_content_cell");
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].className = 'article_content_cell';
+            }
+
+            var selected_article = document.querySelectorAll('div[article_id="'+String(article_id)+'"]')[0];
+            selected_article.className += ' content_cell_selected';
+        }
+
+        socket.on("open_article", (msg, color="black") => {
+            article_data = JSON.parse(msg);
+            if (document.getElementById("main_article_window").getAttribute('article_id') == article_data['article_id']) {
+                
+                document.getElementById('article_title_p').innerText = article_data['title'];
+
+                document.getElementById('extra_details_p_tag_container').innerHTML = create_user_tag(article_data['author'][0],article_data['author'][1]).innerHTML;
+                document.getElementById('article_page_content').innerText = article_data['content'];
+
+                if (article_data['author'][0] == user_name || user_public_status != 1) {
+                    document.getElementById("admin_tools").style.display = "";
+                } else {
+                    document.getElementById("admin_tools").style.display = "none";
+                }
+                document.getElementById('main_article_window').style.display = '';
+                ACTIVATE_selected_article(article_data['article_id']);
+            }
+        });
+
+
+        socket.on("inform_deleted_article", (msg, color="black") => {
+            deleted_article = JSON.parse(msg);
+            if (document.getElementById("main_article_window").getAttribute('article_id') == deleted_article['article_id']) {
+                document.getElementById('main_article_window').style.display = 'none';
+            }
+        });
+
+        function delete_article() {
+            var article_id = document.getElementById('main_article_window').getAttribute("article_id");
+            if (article_id != 'none') {
+                socket.emit('delete_article',JSON.stringify({sender: user_name,'article_id':article_id})); 
+            }
+            document.getElementById('main_article_window').style.display = 'none';
+        }
+    </script>
+
+    <div id="main_article_window" style="display: none;" article_id="none" class="main_article_content">
+        <div class="box-d-frame">
+
+            <div class="box-d-header">
+                <div class="box-d-header-title-and-controls">
+                    <div class="title-text"><p id="article_title_p">Article about some stuff</p></div>
+                    <div id="admin_tools">
+                        <div class="buttons-frame" style="display: flex;">
+                            <div onclick="create_new_article(true)" class="generic_btn"><p>MODIFY</p></div>
+                            <div onclick="delete_article()" class="generic_btn"><p>DELETE</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-frame" style="display: flex;">
+                    <div class="author-frame"><p id="written_by_static">Written by</p><div id="extra_details_p_tag_container"></div></div>
+                </div>
+            </div>
+
+            <div class="content-frame">
+                <div class="content-box">
+                    <p class="actual_content" id="article_page_content">content displays like this</p>
+                </div>
+
+                <div class="comments-header" style="display: flex">
+                    <div class="title-text"><p>Comments:</p></div>
+                </div>
+            </div>
+
+            <div class="comments-frame">
+                {% include './components/articles_main/comment_section/comment_section.jinja' %}
+            </div>
+        </div>
+
+
+    </div>
+    
+{% endblock %}

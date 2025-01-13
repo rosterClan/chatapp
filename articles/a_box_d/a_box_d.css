@@ -1,0 +1,198 @@
+
+/* Box A Frame*/
+.box-d-frame {
+    position: relative;
+    width: 700px; /* Adjust the width as needed */
+    height: 700px; /*Adjust the height as needed */
+    border: 0px; /* Border color */
+    background-color: #c1ccd2; /* Background color */
+    /* overflow: hidden; Hide overflow content */
+    z-index: 1;
+}
+
+.box-d-header {
+    position: absolute;
+    width: 700px;
+    height: 90px;
+    background-color: rgb(58, 57, 57);
+    z-index: 2;
+}
+
+.title-text {
+    position: absolute;
+    font-weight: bold;
+    top: 15%;
+    left: 5%;
+    font-size: 20px;
+    text-align: left;
+    color: #ffffff; /* Text color */
+    z-index: 3;
+}
+
+
+.title-frame {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    top: 15%;
+    /*background-color: rgb(58, 57, 57);*/
+    z-index: 5;
+}
+
+.info-frame {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    top: 50%;
+    left: 5%;
+    color: #ffffff;
+}
+
+.author-frame {
+    position: relative;
+    width: 200px;
+    z-index: 6;
+    font-size: 17px;
+}
+
+
+.staff-tag-text {
+    font-weight: bold;
+    position: relative;
+    top: 9px;
+    padding-bottom: 3%;
+    left: -9%;
+    color: green; /* Text color */
+    z-index: 3;
+    font-size: 9px;
+}
+
+.student-tag-text {
+    font-weight: bold;
+    position: relative;
+    top: 9px;
+    padding-bottom: 3%;
+    left: -9%;
+    color: white; /* Text color */
+    z-index: 3;
+    font-size: 9px;
+}
+
+.date-frame {
+    position: relative;
+    font-size: 17px;
+}
+
+
+.content-frame {
+    position: relative;
+    width: 700px;
+    top: 15%;
+    /*background-color: #a69898;*/
+    z-index: 5;
+}
+
+.content-box {
+    position: relative;
+    width: 630px;
+    height: 300px;
+    top: 15%;
+    left: 5%;
+    /*background-color: #a69898;*/
+    z-index: 5;
+    background-color: #ffffff;
+}
+
+input[type=text] {
+    position: relative;
+    width: 550px; /* Adjust the width as needed */
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.title-box {
+    height: 45px;
+    top: -15%;
+    left: 70px;
+}
+
+.buttons-frame {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    left: 5%;
+}
+
+.modify-button {
+    position: relative;
+    border: black;
+    height: 20px;
+    width: 50px;
+    color: rgb(58, 57, 57);
+    background-color: #82a4b5;
+    top: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.delete-button {
+    position: relative;
+    border: black;
+    height: 20px;
+    width: 50px;
+    color: rgb(58, 57, 57);
+    background-color: #82a4b5;
+    left: 10%;
+    top: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.comments-header {
+    position: relative;
+    width: 700px;
+    height: 50px;
+    color: white;
+    background-color: rgb(58, 57, 57);
+    z-index: 2;
+}
+
+.comments-frame {
+    position: relative;
+    width: 700px;
+    top: 20px;
+}
+
+.comments-box {
+    position: relative;
+    width: 630px;
+    height: 100px;
+    top: 15%;
+    left: 5%;
+    /*background-color: #a69898;*/
+    z-index: 5;
+    background-color: #ffffff;
+}
+
+.comment-button {
+    position: relative;
+    border: black;
+    height: 20px;
+    color: rgb(58, 57, 57);
+    background-color: #82a4b5;
+    left: 80%;
+    width: 100px;
+    top: 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,99 @@
+<!-- 
+Sign up page, pretty much the same as login.
+-->
+{% extends 'base.jinja' %}
+
+
+{% block content %} 
+
+    <style>
+        {% include 'sign-up.css' %}
+    </style> 
+
+    <center>
+        <div class = "login-title">
+            |___SIGN UP___|
+        </div>
+        <div class = "login-frame">
+            <div class = "username-title">
+                Username:
+            </div>
+            <input type="text" class="username-text-in" id="username" placeholder="Enter your username">
+            <div class = "password-title">
+                Password:
+            </div>
+            <input type="password" class="password-text-in" id="password" placeholder="Enter your password">
+            <div class="image-frame">
+                <img src="{{ url_for('static', filename='images/welcome_to_site.gif') }}" alt="welcome!" width="250">
+                
+            </div>
+        </div>
+        <br></br>
+        <button class="login-button" onclick="signup()">SIGN UP</button>
+    </center>
+
+    <script>
+         function isValidURL(string) {
+            if (string.length == 0) {
+                return false;
+            }
+            if (string[0] == "/") {
+                return true;
+            }
+            return false;
+        }
+
+        function validate_credentials(username,password) {
+            const hasAlpha = str => /[a-zA-Z]/.test(str);
+            const hasNumeric = str => /\d/.test(str);
+
+            let error = "";
+            password = password.trim();
+            username = username.trim();
+
+            if (username.length == 0) {
+                error += "You cannot have an empty username\n";
+            }
+            if (password.length < 8) {
+                error += "You must enter a password with length greater or equal to 8 characters.\n";
+            }
+            if (!hasAlpha(password)) {
+                error += "Your password must contain at least one alphabetic character.\n";
+            }
+            if (!hasNumeric(password)) {
+                error += "Your password must contain at least one numeric character.\n";
+            }
+
+            return error;
+        }
+
+        async function signup() {
+            let sign_up_url = "{{ url_for('signup_user') }}";
+            let password_error = validate_credentials($("#username").val(),$("#password").val());
+
+            if (password_error.length == 0) {
+                let user_hash = await sha256($("#username").val()+$("#password").val());
+                let shhh_key  = await sha256($("#password").val());
+
+                sessionStorage.setItem("key", shhh_key);
+                sessionStorage.setItem("user_hash", user_hash);
+                sessionStorage.setItem("username", $("#username").val());
+
+                let res = await axios.post("https://127.0.0.1:5000/signup/user", {
+                    username: $("#username").val(),
+                    user_hash: user_hash
+                }); 
+                
+                if (res.data['error'] == null) {
+                    sessionStorage.setItem('token',res.data['access_token']);
+                    window.open(res.data['redirect'], "_self");
+                } else {
+                    alert(res.data['error']);
+                }
+
+            } else {
+                alert(password_error);
+            }
+        }
+    </script>
+{% endblock %}

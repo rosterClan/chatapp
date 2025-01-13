@@ -1,0 +1,63 @@
+{% block content %} 
+
+    <script>
+        function close_article_creation(event,element) {
+            if (event.target != element) {
+                event.stopPropagation();
+                return;
+            }
+            element.style.display = "None";
+        }
+
+        function POST_article() {
+            var title = document.getElementById('article_title_input').value;
+            var content = document.getElementById('article_content_input').value;
+            var possible_article_id = document.getElementById("create_article_overlay").getAttribute('article_id');
+
+            if (title.replace(/\s/g, '').length && content.replace(/\s/g, '').length) {
+                var article_details = {
+                    'title' : title,
+                    'content' : content,
+                    'author' : user_name,
+                    'article_id' : possible_article_id
+                }
+
+                socket.emit('post_article',JSON.stringify({sender: user_name,'article':article_details})); 
+            }
+
+            document.getElementById('article_title_input').value = "";
+            document.getElementById('article_content_input').value = "";
+            document.getElementById("create_article_overlay").style.display = 'none';
+        }
+    </script>
+
+    <style>
+        {% include './components/articles_sidebar/create_article_overlay/create_article_overlay.css' %}
+    </style> 
+
+    <div onclick="close_article_creation(event, this)" id="create_article_overlay" class="create_article_overlay">
+        <div class="create_article_wiondow">
+            
+            <div class="create_article_header">
+                <div class="create_article_header_title"><p>New Article</p></div>
+            </div>
+
+            <div class="create_article_content">
+                <div class="create_article_content_buffer">
+                    <div class="create_article_title">
+                        <p>Title:</p>
+                        <input id="article_title_input" type="text" placeholder="Enter your article title here">
+                    </div>
+
+                    <div class="create_article_body_content">
+                        <p>Content:</p>
+                        <textarea id="article_content_input" type="text" class="create_article_title_input" placeholder="Enter your article title here"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="POST_article()">SUBMIT</button>
+            
+        </div>
+    </div>
+{% endblock %}

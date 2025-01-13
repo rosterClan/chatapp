@@ -1,0 +1,81 @@
+{% extends 'base.jinja' %}
+
+{% block content %} 
+    <style>
+        {% include './home.css' %}
+    </style>
+
+    <script src="/static/js/libs/socket.io.min.js"></script>
+    <script>
+
+        const secret_key = sessionStorage.getItem("key");
+        const user_hash = sessionStorage.getItem("user_hash");
+        const user_name = sessionStorage.getItem("username");
+
+        document.cookie = "username="+user_name;
+        document.cookie = "user_hash="+user_hash;
+
+        var socket = io();
+
+        socket.on("error", (msg, color="black") => {
+            let message = JSON.parse(msg)['error_msg'];
+            alert(message);
+            if (message == "No dual account use") {
+                window.location.replace("https://127.0.0.1:5000");
+            }
+        });
+
+        window.addEventListener('beforeunload', function (event) {
+            socket.emit('disconnect');
+        });
+    </script>
+
+    {% include './components/user_tags/create_user_tags_script.jinja' %}
+
+    <body>
+        <div id="header_wpr">
+            {% include './components/header/header.jinja' %}
+        </div>
+
+        <div id="body_wpr">
+
+            {% include './components/articles_sidebar/create_article_overlay/create_article_overlay.jinja' %}
+   
+            {% include './components/user_perms/user_perms_overlay.jinja' %}
+            
+            <script>
+                var user_role = "{{ user_role }}";
+            </script>
+            
+            <div class="right_side_line" id="side_bar_wpr">
+                {% include './components/friends-list/friends-list.jinja' %}
+            </div>
+
+            <div style="display: none;" id="messaging_items" class="main_content_wpr">
+                <div class="dynamic_sidebar right_side_line">
+                    {% include './components/sidebar/sidebar.jinja' %}
+                </div>
+                <div class="dynamic_main">
+                    <div class="dynamic_main_padding">
+                        {% include './components/messager/messager.jinja' %}
+                    </div>
+                </div>
+            </div>
+
+            
+            <div id="knowledge_items" class="main_content_wpr">
+                <div class="dynamic_sidebar right_side_line">
+                    {% include './components/articles_sidebar/articles_sidebar.jinja' %}
+                </div>
+                <div class="dynamic_main">
+                    <div class="dynamic_main_padding">
+                        {% include './components/articles_main/articles_main.jinja' %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+
+{% endblock %}

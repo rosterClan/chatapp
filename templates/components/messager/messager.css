@@ -1,0 +1,43 @@
+.messenger_content {
+    height: 100%;
+    width: 100%;
+    align-items: center; 
+    display: flex;
+    flex-direction: column;
+}
+
+.blow-out {
+    height: 100%;
+    width: 100%;
+}
+
+.messenger_header {
+    flex: 1;
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+    height: fit-content;
+}
+
+.message_history {
+    flex: 9;
+}
+
+.message_history_wpr {
+    flex: 9;
+}
+
+.user_controls {
+    flex:1;
+}
+
+.title-delete-divide {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_btn {
+    flex:1;
+}

@@ -1,0 +1,85 @@
+
+
+{% block content %} 
+
+    <style>
+        {% include './components/articles_main/comment_section/comment_section.css' %}
+    </style> 
+
+    <script>
+        function DELETE_comment(element) {
+            var parent_element = element.parentElement;
+            var comment_id = parent_element.getAttribute('comment_id');
+            var article_id = document.getElementById("main_article_window").getAttribute('article_id');
+            socket.emit('delete_post_by_id',JSON.stringify({sender: user_name,'comment_id':comment_id,'article_id':article_id})); 
+
+            CLEAR_comment_section();
+        }
+
+        function POST_comment() {
+            var comment_section = document.getElementById("comment_section_text_area");
+            var comment_section_txt = comment_section.value;
+            comment_section.value = "";
+
+            var article_id = document.getElementById("main_article_window").getAttribute('article_id');
+            socket.emit('post_comment',JSON.stringify({sender: user_name,'article_id':article_id, 'content': comment_section_txt})); 
+        }
+
+        function CLEAR_comment_section() {
+            while (document.getElementsByClassName("comment_vertical_divide").length > 0) {
+                document.getElementsByClassName("comment_vertical_divide")[0].remove();
+            } 
+        }
+        
+        function LOAD_comment_section(comments_array) {
+            CLEAR_comment_section();
+            
+            comments_array.sort((a, b) => b.time_posted - a.time_posted);
+
+            var parent_element = document.getElementById("comment_section_display");
+            for (var i = 0; i < comments_array.length; i++) {
+                var element = document.createElement("div");
+                element.innerHTML = `{% include './components/articles_main/comment_section/comment_section_tile/comment_section_tile.jinja' %}`;
+
+                if (user_public_status == 1) {
+                    element.querySelector("#delete_comment_wpr").style.display = 'none';
+                } else {
+                    element.querySelector("#delete_comment_wpr").style.display = '';
+                }
+
+                element.querySelector("#comment_sender_name").innerHTML = create_user_tag(comments_array[i]['user_name'][0],comments_array[i]['user_name'][1]).innerHTML;
+                element.querySelector("#comment_message_content").innerText = comments_array[i]['comment_msg'];
+                element.querySelector('#comment_wpr_general').setAttribute('comment_id',comments_array[i]['comment_id'])
+
+                parent_element.appendChild(element);
+            }
+        }
+        
+        socket.on("get_article_comments", (msg, color="black") => {
+            comment_data = JSON.parse(msg);
+            var article_id = document.getElementById("main_article_window").getAttribute('article_id');
+            if (comment_data['article_id'] == article_id) {
+                LOAD_comment_section(comment_data['comments'])
+            }
+        });
+
+        
+    </script>
+
+    <div class="comment_section_wpr">
+        <div class="comment_section_input">
+            <div class="comment_section_text_area_wpr">
+                <textarea id="comment_section_text_area" class="comment_section_text_area"></textarea>
+            </div>
+
+            <div class="comment_section_post_btn_wpr">
+                <div onclick="POST_comment()" class="generic_btn"><p>POST</p></div>
+            </div>
+
+        </div>
+        <div id="comment_section_display" class="comment_section_display">
+            
+        </div>
+    </div>
+
+{% endblock %}

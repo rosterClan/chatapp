@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML :)</title> 
+        <script src="/static/js/libs/axios.min.js"></script>
+        <script src="/static/js/libs/jquery.min.js"></script>
+        <script src="/static/js/libs/js.cookie.min.js"></script>
+    </head>
+    <body>
+        <!-- The content from any other page goes here -->
+        {% block content %} {% endblock %}
+    </body>
+</html>
+
+<script>
+
+async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+    return hashHex;
+}
+
+</script>

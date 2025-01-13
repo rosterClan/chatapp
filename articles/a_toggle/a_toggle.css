@@ -1,0 +1,36 @@
+.toggle-wpr {
+    width: 200px;
+    height: 35px;
+    margin: auto;
+    margin-top: 2px;
+}
+
+.toggle {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border: 3px solid #a6c0cd;
+    border-radius: 10px;
+    display: flex;
+}
+
+.switch_division {
+    float: 1;
+    width: 100%;
+}
+.switch_division p {
+    margin-top: 7px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.btn {
+    width: 50%;
+    height: 105%;
+    background-color: #a6c0cd;
+    opacity: 50%;
+    border-radius: 5px 0px 0px 10px;
+    /*transform: translate(0px,-23px);*/
+    transform: translate(0px, -102%);
+    transition: transform 0.1s ease-in-out, border-radius 0.1s ease-in-out;
+}

@@ -1,0 +1,16 @@
+{% block content %} 
+    <style>
+        {% include './components/articles_sidebar/article_cell/article_cell.css' %}
+    </style> 
+    
+    <div onclick="OPEN_article(this)" id="content-cell" class="article_content_cell">
+        <div class="content-cell-flex-wpr">
+            <div class="article_name_wpr">
+                <p id="article_name_cell"></p>
+            </div>
+            <div class="article_des_wpr">
+                <p id="article_des_cell">Alex: that is pretty cool</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

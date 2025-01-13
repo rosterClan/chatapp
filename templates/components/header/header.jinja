@@ -1,0 +1,62 @@
+{% block content %} 
+    <style>
+        {% include './components/header/header.css' %}
+    </style>
+
+    <script>
+        var user_public_status = null;
+        function log_off() {
+            window.location.replace("https://127.0.0.1:5000");
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            socket.emit("inform_status",JSON.stringify({"sender":user_name})); 
+        }, false);
+
+        socket.on("get_user_status", (msg, color="black") => {
+            var status = JSON.parse(msg)['status'];
+            user_public_status = status;
+            if (status == 1) {
+                document.getElementById('admin_user_perms').style.display = 'none';
+            } else {
+                document.getElementById('admin_user_perms').style.display = '';
+            }
+        });
+
+
+    </script>
+
+    <div class="header">
+        <div class="logo-container">
+            <div class="header_logo">
+                <h3>GirlChatz</h3>
+            </div>
+            <div class="usyd-logo">
+                <img src="https://edstem.org/themes/usyd-appbar.svg" width="80px" alt="Logo">
+            </div>
+        </div>
+        <div class="white-space-seperator">
+            
+            {% include './components/toggle-switch/toggle-switch.jinja' %}
+
+        </div>
+        <div class="notification-container">
+
+            <div id="admin_user_perms" onclick="open_user_perms()" class="svg-wpr">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="6" r="4" stroke="white" stroke-width="1.5"/>
+                        <path d="M15.5 13.5351C14.4704 13.1948 13.275 13 12 13C8.13401 13 5 14.7909 5 17C5 17.3453 5 17.6804 5.02673 18M13 20.9867C12.6836 20.9955 12.3506 21 12 21C10.2776 21 8.97906 20.8916 8 20.6952" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M19.9502 17.0498L16.0502 20.9497" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="18" cy="19" r="3" stroke="white" stroke-width="1.5"/>
+                </svg>
+            </div>
+
+            <div onclick="log_off()" class="svg-wpr">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 15 15" fill="none">
+                    <path d="M13.5 7.5L10.5 10.75M13.5 7.5L10.5 4.5M13.5 7.5L4 7.5M8 13.5H1.5L1.5 1.5L8 1.5" stroke="white"/>
+                </svg>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

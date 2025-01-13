@@ -1,0 +1,54 @@
+
+
+
+.comment_section_wpr {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.comment_section_input {
+    flex:1; 
+    max-height: 165px;
+    display: flex;
+    justify-content: stretch;
+    flex-direction: column;
+}
+
+.comment_section_display {
+    flex:5; 
+
+    height: 100%;
+    max-height: 100%;
+
+    overflow-y: scroll;
+    margin-top: 20px;
+
+    scrollbar-width: none; 
+    -ms-overflow-style: none;  
+    
+    overflow-x: hidden;
+}
+
+.comment_section_text_area {
+    max-width: 99%;
+    max-height: 99%;
+
+    min-width: 99%;
+    min-height: 99%;
+}
+
+.comment_section_text_area_wpr {
+    flex: 3;
+    max-height: 100px;
+}
+.comment_section_post_btn_wpr {
+    flex: 1;
+    height: 30px;
+    width: fit-content;
+    margin-top: 15px;
+    margin-left: auto; 
+    margin-bottom: 0px;
+}
