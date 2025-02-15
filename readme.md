@@ -1,8 +1,8 @@
-How To Run
-I wrote this assignment in a Windows development environment. To run the code, open your CMD and navigate to the current working directory (i.e., the directory in which this README file is stored).
+### What is this?
+An online chat application, implementing end-to-end encrypted messaging alongisde a community message board. Supporting real-time messaging, user roles, permissions, and a collaborative knowledge repository. Applied user-centered design methodologies to refine navigation and accessibility. Built with web technologies, focusing on security, scalability, and user experience. 
 
-Then, you can run the following script to activate the Python virtual environment:
+## Example Images
 
-.venv\Scripts\activate
 
-Once the virtual environment is activated, you should be able to open and run Assignment.py.
+### How To Run
+----TO DO----
