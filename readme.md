@@ -1,7 +1,7 @@
 <br />
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=rH8lUGSvOLk">
-    <img src="https://img.youtube.com/vi/rH8lUGSvOLk/0.jpg" alt="Logo">
+  <a href="">
+    <img src="" alt="Logo">
   </a>
   <h3 align="center">Secure Online Chat Application</h3>
 </div>
