@@ -12,8 +12,10 @@ Designed and implemented an end-to-end encrypted messaging and knowledge-sharing
 ### Built With
 
 <a href="">
-  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="javascript">
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="python">
 </a>
+
+
 
 ## Getting Started
 This is an example of how you may give instructions on setting this project locally. Clone this repo and then perform the following steps. 
