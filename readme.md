@@ -20,6 +20,10 @@ Designed and implemented an end-to-end encrypted messaging and knowledge-sharing
 <a href="">
   <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="html5">
 </a>
+<a href="">
+  <img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white" alt="flask">
+</a>
+
 
 
 ## Getting Started
