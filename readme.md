@@ -1,8 +1,29 @@
-### What is this?
-An online chat application, implementing end-to-end encrypted messaging alongisde a community message board. Supporting real-time messaging, user roles, permissions, and a collaborative knowledge repository. Applied user-centered design methodologies to refine navigation and accessibility. Built with web technologies, focusing on security, scalability, and user experience. 
+<br />
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=rH8lUGSvOLk">
+    <img src="https://img.youtube.com/vi/rH8lUGSvOLk/0.jpg" alt="Logo">
+  </a>
+  <h3 align="center">Secure Online Chat Application</h3>
+</div>
 
-## Example Images
+## About The Project
+Designed and implemented an end-to-end encrypted messaging and knowledge-sharing web application. Supporting real-time messaging, user roles, permissions, and a collaborative knowledge repository. Applied user-centered design methodologies to refine navigation and accessibility. Built with web technologies, focusing on security, scalability, and user experience. 
 
+### Built With
 
-### How To Run
-----TO DO----
+<a href="">
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="javascript">
+</a>
+
+## Getting Started
+This is an example of how you may give instructions on setting this project locally. Clone this repo and then perform the following steps. 
+
+### Prerequisites
+1: Clone the repo
+2: Install required librarys
+  ```sh
+  dotnet restore
+  ```
+
+## Contact
+William Walker - william.sinclair.walker@gmail.com
