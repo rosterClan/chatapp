@@ -2,11 +2,11 @@
 
 
 <div align="center">
-  <a href="https://youtu.be/8SxA47AKwcE">
-    <img width="50%" src="https://drive.google.com/uc?export=view&id=1wiuEH81-kFMclEVgjJzW4mcLlCfKuvHD" alt="Logo">
+  <a href="https://www.youtube.com/watch?v=-vDm7-wZ7QM">
+    <img width="70%" src="https://drive.google.com/uc?export=view&id=1wiuEH81-kFMclEVgjJzW4mcLlCfKuvHD" alt="Logo">
   </a>
   <h3 align="center">Secure Online Chat Application</h3>
-  <a align="center" href="">
+  <a align="center" href="https://www.youtube.com/watch?v=-vDm7-wZ7QM">
     <p>DEMONSTRATION VIDEO</p>
   </a>
 </div>
