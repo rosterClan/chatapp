@@ -56,8 +56,5 @@ This project demonstrates a **strong emphasis on both usability and security**, 
   <img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white" alt="flask">
 </a>
 
-## Getting Started
-This is an example of how you may give instructions on setting this project locally. Clone this repo and then perform the following steps. 
-
 ## Contact
 William Walker - william.sinclair.walker@gmail.com
